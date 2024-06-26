@@ -37,7 +37,7 @@ INNER JOIN carrera
 ON pensum.id_carrera = carrera.id
 ;
 
-drop view consulta2;
+
 
 select * from consulta2
 where hora_inicio = "" 

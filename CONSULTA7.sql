@@ -11,7 +11,7 @@ ON a.id_seccion = sec.id
 INNER JOIN curso
 ON sec.id_curso = curso.id
 
-WHERE ac.aprobado = true
+WHERE ac.aprobado = 1
 GROUP BY estudiante.carne
 ;
 
@@ -31,7 +31,9 @@ INNER JOIN estudiante_creditos
 ON estudiante.carne = estudiante_creditos.carne
 INNER JOIN promedio_estudiante 
 ON estudiante.carne = promedio_estudiante.carne
+;
+
+
 WHERE carrera.id = 1
 AND estudiante_creditos.total_creditos >= pensum.creditos_cierre
-;
 /*MODIFICAR EL CODIGO DE LA CARRERA POR EL VERDADERO CODIGO DE INGENIERIA EN SISTEMAS*/
