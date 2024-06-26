@@ -14,9 +14,7 @@ DROP SCHEMA IF EXISTS `registroacademico_f1` ;
 CREATE SCHEMA IF NOT EXISTS `registroacademico_f1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `registroacademico_f1` ;
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`estudiante`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`estudiante` (
   `carne` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
@@ -27,14 +25,8 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`estudiante` (
   PRIMARY KEY (`carne`),
   UNIQUE INDEX `carne_UNIQUE` (`carne` ASC) VISIBLE,
   UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`curso`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
@@ -42,14 +34,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`edificio`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`edificio` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
@@ -57,14 +46,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`edificio` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`salon`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`salon` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_edificio` INT NOT NULL,
@@ -77,14 +63,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`salon` (
   CONSTRAINT `salon_ibfk_1`
     FOREIGN KEY (`id_edificio`)
     REFERENCES `registroacademico_f1`.`edificio` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`catedratico`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`catedratico` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NOT NULL,
@@ -95,28 +78,22 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`catedratico` (
   PRIMARY KEY (`codigo`),
   UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC) VISIBLE,
   UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`ciclo`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`ciclo` (
   `id` CHAR(2) NOT NULL,
   `ciclo` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `ciclo_UNIQUE` (`ciclo` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`seccion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`seccion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_curso` INT NOT NULL,
@@ -143,14 +120,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`seccion` (
   CONSTRAINT `seccion_ibfk_4`
     FOREIGN KEY (`id_ciclo`)
     REFERENCES `registroacademico_f1`.`ciclo` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`asignacion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`asignacion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_estudiante` INT NOT NULL,
@@ -166,14 +140,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`asignacion` (
   CONSTRAINT `asignacion_ibfk_2`
     FOREIGN KEY (`id_seccion`)
     REFERENCES `registroacademico_f1`.`seccion` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`acta_nota`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`acta_nota` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_asignacion` INT NOT NULL,
@@ -188,14 +159,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`acta_nota` (
   CONSTRAINT `acta_nota_ibfk_1`
     FOREIGN KEY (`id_asignacion`)
     REFERENCES `registroacademico_f1`.`asignacion` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`aprobacion_curso`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`aprobacion_curso` (
   `id` INT NOT NULL,
   `acta_nota_codigo` INT NOT NULL,
@@ -206,14 +174,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`aprobacion_curso` (
   CONSTRAINT `fk_aprobacion_curso_acta_nota`
     FOREIGN KEY (`acta_nota_codigo`)
     REFERENCES `registroacademico_f1`.`acta_nota` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`unidad_academica`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`unidad_academica` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `unidad` VARCHAR(100) NOT NULL,
@@ -223,14 +188,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`unidad_academica` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unidad_UNIQUE` (`unidad` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`carrera`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`carrera` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_unidad_academica` INT NOT NULL,
@@ -242,14 +204,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`carrera` (
   CONSTRAINT `carrera_ibfk_1`
     FOREIGN KEY (`id_unidad_academica`)
     REFERENCES `registroacademico_f1`.`unidad_academica` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`jornada`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`jornada` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `jornada` VARCHAR(50) NOT NULL,
@@ -258,28 +217,22 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`jornada` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `jornada_UNIQUE` (`jornada` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`semestre`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`semestre` (
   `id` CHAR(3) NOT NULL,
   `semestre` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `semestre_UNIQUE` (`semestre` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`pensum`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`pensum` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_carrera` INT NOT NULL,
@@ -309,14 +262,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`pensum` (
   CONSTRAINT `pensum_ibfk_4`
     FOREIGN KEY (`id_semestre_fin`)
     REFERENCES `registroacademico_f1`.`semestre` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`curso_pensum`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_pensum` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_pensum` INT NOT NULL,
@@ -341,14 +291,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_pensum` (
   CONSTRAINT `curso_pensum_ibfk_3`
     FOREIGN KEY (`id_semestre`)
     REFERENCES `registroacademico_f1`.`semestre` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`creditos_prerrequisito`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`creditos_prerrequisito` (
   `id` INT NOT NULL,
   `creditos_requeridos` VARCHAR(45) NOT NULL,
@@ -359,14 +306,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`creditos_prerrequisito` (
   CONSTRAINT `fk_creditos_prerrequisito_curso_pensum1`
     FOREIGN KEY (`curso_pensum_id`)
     REFERENCES `registroacademico_f1`.`curso_pensum` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`curso_prerrequisito`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_prerrequisito` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_curso_pensum` INT NOT NULL,
@@ -381,28 +325,22 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_prerrequisito` (
   CONSTRAINT `curso_prerrequisito_ibfk_2`
     FOREIGN KEY (`id_curso_prerrequisito`)
     REFERENCES `registroacademico_f1`.`curso` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`dia`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`dia` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dia` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `dia_UNIQUE` (`dia` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`dia_seccion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`dia_seccion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_seccion` INT NOT NULL,
@@ -417,14 +355,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`dia_seccion` (
   CONSTRAINT `dia_seccion_ibfk_2`
     FOREIGN KEY (`id_dia`)
     REFERENCES `registroacademico_f1`.`dia` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`inscripcion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`inscripcion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_estudiante` INT NOT NULL,
@@ -440,14 +375,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`inscripcion` (
   CONSTRAINT `inscripcion_ibfk_2`
     FOREIGN KEY (`id_pensum`)
     REFERENCES `registroacademico_f1`.`pensum` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`periodo`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_jornada` INT NOT NULL,
@@ -459,14 +391,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo` (
   CONSTRAINT `periodo_ibfk_1`
     FOREIGN KEY (`id_jornada`)
     REFERENCES `registroacademico_f1`.`jornada` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`periodo_seccion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo_seccion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_seccion` INT NOT NULL,
@@ -481,14 +410,11 @@ CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo_seccion` (
   CONSTRAINT `periodo_seccion_ibfk_2`
     FOREIGN KEY (`id_periodo`)
     REFERENCES `registroacademico_f1`.`periodo` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `registroacademico_f1`.`desasignacion`
--- -----------------------------------------------------
+
+
+
 CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`desasignacion` (
   `id` INT NOT NULL,
   `id_asignacion` INT NOT NULL,
