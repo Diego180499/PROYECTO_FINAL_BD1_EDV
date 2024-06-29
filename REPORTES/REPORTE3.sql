@@ -1,6 +1,5 @@
 DELIMITER $$
-
-CREATE PROCEDURE mostrarCatedratico(
+CREATE PROCEDURE obtenerInfoCatedratico(
     IN idDocente INT
 )
 BEGIN
@@ -17,8 +16,7 @@ BEGIN
     WHERE 
         codigo = idDocente;
 END$$
-
 DELIMITER ;
 
 
-CALL mostrarCatedratico(1);
+CALL obtenerInfoCatedratico(3);

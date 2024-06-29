@@ -49,7 +49,35 @@ CREATE TABLE  IF NOT EXISTS `registroacademico_f1`.`tipo_transaccion` (
   UNIQUE INDEX `codigo_UNIQUE` (`id` ASC))
   ;
 -----------------------------------------------------------------------|
+-------------------------|
+/* MODIFICACIONES  */
 
+ALTER TABLE registroacademico_f1.creditos_prerrequisito
+MODIFY COLUMN creditos_requeridos INT NOT NULL;
+
+-----------------------
+ALTER TABLE curso_pensum
+MODIFY COLUMN id INT AUTO_INCREMENT PRIMARY KEY
+;
+
+--------------------------------
+ALTER TABLE `registroacademico_f1`.`creditos_prerrequisito` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
+
+ALTER TABLE estudiante
+MODIFY COLUMN `telefono` INT(8)
+;
+
+ALTER TABLE `registroacademico_f1`.`estudiante`
+ADD CONSTRAINT `chk_correo_formato` CHECK (`correo` REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$');
+
+ALTER TABLE `registroacademico_f1`.`catedratico`
+ADD CONSTRAINT `chk_correo_formato` CHECK (`correo` REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$');
+
+--ALTERA LA TABLA PARA QUE SE VERIFIQUE EL EL NOMBRE DE LA CARRERA SEAN SOLAMENTE LETRAS--
+ALTER TABLE registroacademico_f1.carrera
+ADD  CONSTRAINT `chk_nombre_carrera_formato` CHECK (nombre REGEXP '^[a-zA-Z]+$');
 
 /* 1) Reglas de Negocio */
 -- Regla X: descrip...
@@ -114,7 +142,18 @@ ADD COLUMN dpi VARCHAR(13) AFTER codigo;
 
 ----------------------------------------|
 
--- Funcionalidad 4: Registrar Curso en Pensum
+-- Funcionalidad 4: Registrar Curso en Pensum  👍👍
+ALTER TABLE registroacademico_f1.creditos_prerrequisito
+MODIFY COLUMN creditos_requeridos INT NOT NULL;
+
+-----------------------
+ALTER TABLE curso_pensum
+MODIFY COLUMN id INT AUTO_INCREMENT PRIMARY KEY
+;
+
+--------------------------------
+ALTER TABLE `registroacademico_f1`.`creditos_prerrequisito` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
 
 
 
@@ -127,13 +166,13 @@ ADD COLUMN dpi VARCHAR(13) AFTER codigo;
 -- Funcionalidad 7: *Agregar Horario* 👍👍
 -- NO HAY ALTERACIONES EN LAS TABLAS --
 
--- Funcionalidad 8: Asignación Estudiante a Seccion
+-- Funcionalidad 8: Asignación Estudiante a Seccion 👍👍
 
 
--- Funcionalidad 9: Ingresar Acta Nota de Asignación
+-- Funcionalidad 9: Ingresar Acta Nota de Asignación 👍👍
 
 
--- Funcionalidad 10: Desasignar Curso
+-- Funcionalidad 10: Desasignar Curso 👍👍
 
 --------------------------------------------------------------------------------
 
@@ -162,5 +201,3 @@ ADD COLUMN dpi VARCHAR(13) AFTER codigo;
 -- Reporte 8: Agregar nueva columna a Catedratico y Control de Transacciones en la DB
 
 -- -------------------------
-/* USE registroacademico_f1;
-SELECT * FROM estudiante; */

@@ -68,7 +68,7 @@ BEGIN
                     GROUP BY estudiante.carne
                     LIMIT 1;
                     -- Verificamos que el estudiante tenga los creditos suficientes
-                    IF(creditos_estudiante_var => creditos_curso_prerrequisito_var) THEN 
+                    IF(creditos_estudiante_var >= creditos_curso_prerrequisito_var) THEN 
                         INSERT INTO registroacademico_f1.asignacion (id_estudiante, id_seccion, fecha) 
                         VALUES (id_estudiante_p, id_seccion_p, CURRENT_DATE());
                     ELSE

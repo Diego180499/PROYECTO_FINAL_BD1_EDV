@@ -10,7 +10,7 @@ BEGIN
     DECLARE id_asignacion_var INT;
     DECLARE id_curso_var INT;
     DECLARE acta_nota_codigo_var INT;
-    DECLARE nota_aprobacion_var INT,
+    DECLARE nota_aprobacion_var INT;
     DECLARE zona_minima_var INT;
     DECLARE aprobado_var BOOLEAN;
     -- Verificamos que la sección esté registrada

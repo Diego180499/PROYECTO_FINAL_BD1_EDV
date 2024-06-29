@@ -1,5 +1,3 @@
-USE `registroacademico_f1` ;
-
 CREATE VIEW curso_prerequisito as
 SELECT
 c1.id as id_curso_prerequisito,
@@ -36,8 +34,6 @@ INNER JOIN curso as c1
 ON cp.id_curso = c1.id
 ;
 
--- --------
-
 SELECT * FROM curso_prerequisito as cpre
 LEFT  JOIN curso_postrequisito as cpost 
 ON cpre.curso = cpost.curso
@@ -45,7 +41,11 @@ UNION
 SELECT * FROM curso_prerequisito as cpre
 RIGHT JOIN curso_postrequisito as cpost 
 ON cpre.curso = cpost.curso
+
+-- WHERE cp.curso_pensum = 15 (NO FUNCIONA)
 ;
+
+-- SELECT * FROM CURSO_PRERREQUISITO;
 
 /*
 cpost.id_curso_postrequisito, cpost.curso_postrequisito, cpost.creditos

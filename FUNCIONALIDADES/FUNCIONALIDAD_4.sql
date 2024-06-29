@@ -5,7 +5,7 @@ MODIFY COLUMN creditos_requeridos INT NOT NULL;
 
 -----------------------
 ALTER TABLE curso_pensum
-MODIFY COLUMN id INT AUTO_INCREMENT PRIMARY KEY
+MODIFY COLUMN id INT AUTO_INCREMENT   -- PRIMARY KEY
 ;
 
 --------------------------------

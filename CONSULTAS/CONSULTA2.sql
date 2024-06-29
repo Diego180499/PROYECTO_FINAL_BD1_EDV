@@ -1,3 +1,4 @@
+-- DROP VIEW curso_horario_y_dia;
 CREATE VIEW  consulta2 as
 SELECT curso.id as id_curso
 		, curso.nombre as curso_nombre
@@ -37,10 +38,8 @@ INNER JOIN carrera
 ON pensum.id_carrera = carrera.id
 ;
 
-
-
 select * from consulta2
-where hora_inicio = "" 
-AND hora_fin = ""
-AND ciclo_id = ""
+where hora_inicio = "12:00:00"
+AND hora_fin = "13:00:00"
+AND ciclo_id = "1S"
 ;

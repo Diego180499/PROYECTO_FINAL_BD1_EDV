@@ -36,9 +36,10 @@ BEGIN
                 c.nombre AS Curso,
                 s.seccion AS Seccion,
                 d.dia AS Dia,
+                /*
                 CONCAT(
                     MIN(p.hora_inicio), ' - ', MAX(p.hora_fin)
-                ) AS Periodo,
+                ) AS Periodo,*/
                 CONCAT(ed.nombre, ', ', sa.nombre) AS Lugar
             FROM 
                 Estudiante e
@@ -54,8 +55,8 @@ BEGIN
                 Dia d ON ds.id_dia = d.id
             INNER JOIN 
                 Periodo_Seccion ps ON s.id = ps.id_seccion
-            INNER JOIN 
-                Periodo p ON ps.id_periodo = p.id
+            -- INNER JOIN 
+                -- Periodo p ON ps.id_periodo = p.id
             INNER JOIN 
                 Salon sa ON s.id_salon = sa.id
             INNER JOIN 
@@ -71,4 +72,5 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL obtenerCursosAsignadosEstudiante(202030627, '1S', 2024);
+CALL obtenerCursosAsignadosEstudiante(1, '1S', 2024); -- ID Estudiante, CICLO (1S, 2S), Año (2024)
+-- DROP PROCEDURE obtenerCursosAsignadosEstudiante;

@@ -28,7 +28,7 @@ BEGIN
         WHERE id_curso = p_id_curso
           AND id_ciclo = p_id_ciclo
           AND anio = p_anio
-          AND nombre_seccion = p_seccion;
+          AND seccion = p_seccion;
         
         -- Si no existe, mostrar mensaje de error
         IF seccion_existente = 0 THEN
@@ -49,10 +49,11 @@ BEGIN
                 s.id_curso = p_id_curso
                 AND s.id_ciclo = p_id_ciclo
                 AND s.anio = p_anio
-                AND s.nombre_seccion = p_seccion;
+                AND s.seccion = p_seccion;
         END IF;
     END IF;
 END $$
 DELIMITER ;
 
-CALL obtenerEstudiantesAsignadosSeccion(2020306, 1, 2024, 'A');
+-- DROP PROCEDURE obtenerEstudiantesAsignadosSeccion;
+CALL obtenerEstudiantesAsignadosSeccion(3, 1, 2025, 'C'); -- (ID CURSO(1,2,3...), CICLO(1S,2S,VJ,VD), ANIO(2024, 2025), SECCION('A','B','C'))

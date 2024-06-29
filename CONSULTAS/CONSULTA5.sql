@@ -6,6 +6,5 @@ INNER JOIN catedratico
 ON seccion.id_catedratico = catedratico.codigo
 ;
 
-
 SELECT * FROM catedratico_curso
-WHERE catedratico_curso.id_catedratico = "";
+WHERE catedratico_curso.id_catedratico = 1; -- ID Catedratico

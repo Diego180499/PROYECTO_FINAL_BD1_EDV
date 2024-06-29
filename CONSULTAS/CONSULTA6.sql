@@ -11,5 +11,5 @@ INNER JOIN seccion as sec
 ON asign.id_seccion = sec.id
 INNER JOIN curso
 ON sec.id_curso = curso.id
-WHERE curso.id = ""
+WHERE curso.id = "1" -- ID de Curso
 ;

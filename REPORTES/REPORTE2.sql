@@ -52,4 +52,4 @@ BEGIN
 END $$
 DELIMITER ;
    
-CALL obtenerInfoEstudiante(4);
+CALL obtenerInfoEstudiante(1);

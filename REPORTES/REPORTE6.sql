@@ -60,4 +60,4 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL obtenerEstudiantesSeccion(101, '1S', 2024, 'A');
+CALL obtenerEstudiantesSeccion(1, '1S', 2024, 'A'); -- ID CURSO, CICLO (1S, 2S...), AÑO, SECCION ('A','B','C')
