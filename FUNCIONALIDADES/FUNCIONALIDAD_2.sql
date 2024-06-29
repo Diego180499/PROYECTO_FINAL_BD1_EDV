@@ -1,6 +1,3 @@
---ALTERA LA TABLA PARA QUE SE VERIFIQUE EL EL NOMBRE DE LA CARRERA SEAN SOLAMENTE LETRAS--
-ALTER TABLE registroacademico_f1.carrera
-ADD  CONSTRAINT `chk_nombre_carrera_formato` CHECK (nombre REGEXP '^[a-zA-Z]+$');
 ---CONSTRAINT `chk_nombre_carrera_formato`
 --SE CREA EL PROCESO DE VERIFICACION 
 DELIMITER $$

@@ -1,15 +1,3 @@
-ALTER TABLE estudiante
-ADD COLUMN direccion VARCHAR(100);       
------------------------------------------|
-ALTER TABLE estudiante
-ADD COLUMN dpi VARCHAR(13);
-----------------------------------------|
-alter table estudiante
-add column apellido varchar(100) after nombre;
----------------------------------------|
-
-
-
 DELIMITER $$
 
 CREATE PROCEDURE insertarEstudiante(
