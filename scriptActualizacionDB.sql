@@ -124,8 +124,8 @@ ADD COLUMN dpi VARCHAR(13) AFTER codigo;
 -- Funcionalidad 6: Crear Sección   👍👍
 -- NO HAY ALTERACIONES EN LAS TABLAS --
 
--- Funcionalidad 7: *Agregar Horario*
-
+-- Funcionalidad 7: *Agregar Horario* 👍👍
+-- NO HAY ALTERACIONES EN LAS TABLAS --
 
 -- Funcionalidad 8: Asignación Estudiante a Seccion
 

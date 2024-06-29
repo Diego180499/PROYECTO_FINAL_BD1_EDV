@@ -10,7 +10,7 @@ USE `registroacademico_f1` ;
 
 
 
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`estudiante` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`estudiante` (  -- 1
   `carne` INT NOT NULL AUTO_INCREMENT,
   `dpi` VARCHAR(13) NULL DEFAULT NULL,
   `nombre` VARCHAR(100) NOT NULL,
@@ -32,7 +32,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`curso`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso` (  -- 2
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `creditos` INT NOT NULL,
@@ -48,7 +48,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`edificio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`edificio` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`edificio` (  -- 3
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `direccion` VARCHAR(100) NOT NULL,
@@ -64,7 +64,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`salon`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`salon` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`salon` (  -- 4
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_edificio` INT NOT NULL,
   `nombre` VARCHAR(50) NOT NULL,
@@ -85,7 +85,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`catedratico`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`catedratico` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`catedratico` (  -- 5
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `dpi` VARCHAR(13) NULL DEFAULT NULL,
   `nombre` VARCHAR(50) NOT NULL,
@@ -105,10 +105,12 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
+-- -- -- *-*-*-*-*-*--*-*-* INSERT -*-*-*-*-*-*-*--*-*-*-*-*-*-
+
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`ciclo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`ciclo` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`ciclo` (  👍
   `id` CHAR(2) NOT NULL,
   `ciclo` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
@@ -122,7 +124,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`seccion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`seccion` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`seccion` (  -- 6
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_curso` INT NOT NULL,
   `id_salon` INT NOT NULL,
@@ -157,7 +159,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`asignacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`asignacion` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`asignacion` (  -- 7
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_estudiante` INT NOT NULL,
   `id_seccion` INT NOT NULL,
@@ -181,7 +183,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`acta_nota`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`acta_nota` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`acta_nota` (  -- 8
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_asignacion` INT NOT NULL,
   `zona_obtenida` INT NOT NULL,
@@ -216,11 +218,11 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-
+-- ----------------*-*- INSERT *-*- -------------------------------------
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`unidad_academica`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`unidad_academica` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`unidad_academica` ( -- 10
   `id` INT NOT NULL AUTO_INCREMENT,
   `unidad` VARCHAR(100) NOT NULL,
   `ubicacion` VARCHAR(100) NULL DEFAULT NULL,
@@ -238,7 +240,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`carrera`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`carrera` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`carrera` (  -- 7
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_unidad_academica` INT NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
@@ -258,7 +260,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`semestre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`semestre` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`semestre` (  👍
   `id` CHAR(3) NOT NULL,
   `semestre` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -272,7 +274,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`jornada`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`jornada` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`jornada` (  👍
   `id` INT NOT NULL AUTO_INCREMENT,
   `jornada` VARCHAR(50) NOT NULL,
   `hora_inicio` TIME NOT NULL,
@@ -289,7 +291,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`pensum`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`pensum` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`pensum` (  -- 8
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_carrera` INT NOT NULL,
   `id_jornada` INT NOT NULL,
@@ -327,7 +329,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`curso_pensum`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_pensum` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_pensum` (  -- 9
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_pensum` INT NOT NULL,
   `id_curso` INT NOT NULL,
@@ -358,7 +360,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`creditos_prerrequisito`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`creditos_prerrequisito` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`creditos_prerrequisito` (   -- 10
   `id` INT NOT NULL AUTO_INCREMENT,
   `creditos_requeridos` INT NOT NULL,
   `curso_pensum_id` INT NOT NULL,
@@ -377,8 +379,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`curso_prerrequisito`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_prerrequisito` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`curso_prerrequisito` (  
+  `id` INT NOT NULL AUTO_INCREMENT,  
   `id_curso_pensum` INT NOT NULL,
   `id_curso_prerrequisito` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -419,7 +421,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`dia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`dia` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`dia` (  👍
   `id` INT NOT NULL AUTO_INCREMENT,
   `dia` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -481,7 +483,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`periodo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`periodo` (  👍
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_jornada` INT NOT NULL,
   `hora_inicio` TIME NOT NULL,
@@ -524,7 +526,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `registroacademico_f1`.`tipo_transaccion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`tipo_transaccion` (
+CREATE TABLE IF NOT EXISTS `registroacademico_f1`.`tipo_transaccion` (  👍
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`),

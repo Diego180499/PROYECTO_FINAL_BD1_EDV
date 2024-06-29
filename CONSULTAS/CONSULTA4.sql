@@ -14,7 +14,6 @@ INNER JOIN curso as c
 ON cp.id_curso = c.id
 INNER JOIN curso as c1
 ON cpre.id_curso_prerrequisito = c1.id
-WHERE c.nombre = ''
 ;
 
 -- --------------------
@@ -35,8 +34,6 @@ ON cpre.id_curso_pensum = cp.id
 
 INNER JOIN curso as c1
 ON cp.id_curso = c1.id
-
-WHERE c.nombre = ''
 ;
 
 -- --------

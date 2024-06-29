@@ -51,7 +51,7 @@ INSERT INTO `registroacademico_f1`.`periodo` (`id_jornada`, `hora_inicio`, `hora
 (4, '08:00:00', '22:00:00');
 
 
-INSERT INTO `registroacademico_f1`.`tipo_transaccion` (`nombre`)  VALUES
+INSERT INTO `registroacademico_f1`.`tipo_transaccion` (`id`,`nombre`)  VALUES
 (1,'INSERT'),
 (2,'SELECT'),
 (3,'UPDATE'),
