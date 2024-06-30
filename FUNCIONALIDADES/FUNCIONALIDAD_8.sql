@@ -1,5 +1,6 @@
-DELIMITER $$
+/*X*/
 
+DELIMITER $$
 CREATE PROCEDURE asignacionCurso(
     IN id_seccion_p INT,
     IN id_estudiante_p INT
@@ -38,10 +39,10 @@ BEGIN
                     ON p.id = cp.id_pensum
                     INNER JOIN creditos_prerrequisito as cpre
                     ON cp.id = cpre.curso_pensum_id
-                    WHERE e.carne = id_estudiante_p AND cp.id_curso = id_curso_var GROUP BY curso_pensum LIMIT 1) THEN
+                    WHERE e.carne = id_estudiante_p AND cp.id_curso = id_curso_var /* GROUP BY cp.id_estudiante */ LIMIT 1) THEN
 
                     -- Verificamos cuantos creditos prerrequisito tiene el curso
-                    SELECT cpre.creditos_prerrequisito INTO creditos_curso_prerrequisito_var FROM registroacademico_f1.estudiante as e 
+                    SELECT cpre.creditos_requeridos INTO creditos_curso_prerrequisito_var FROM registroacademico_f1.estudiante as e 
                     INNER JOIN inscripcion as i 
                     ON e.carne = i.id_estudiante
                     INNER JOIN pensum as p
@@ -50,10 +51,10 @@ BEGIN
                     ON p.id = cp.id_pensum
                     INNER JOIN creditos_prerrequisito as cpre
                     ON cp.id = cpre.curso_pensum_id
-                    WHERE e.carne = id_estudiante_p AND cp.id_curso = id_curso_var GROUP BY curso_pensum LIMIT 1;
+                    WHERE e.carne = id_estudiante_p AND cp.id_curso = id_curso_var LIMIT 1;
 
                     -- Verificamos cuantos creditos tiene el estudiante
-                    SELECT sum(curso.creditos) as total_creditos INTO creditos_estudiante_var FROM estudiante
+                    IF EXISTS(SELECT sum(curso.creditos) as total_creditos FROM estudiante
                     INNER JOIN asignacion as a
                     ON estudiante.carne = a.id_estudiante
                     INNER JOIN acta_nota as an
@@ -65,8 +66,25 @@ BEGIN
                     INNER JOIN curso
                     ON sec.id_curso = curso.id
                     WHERE ac.aprobado = 1 AND estudiante.carne = id_estudiante_p       
-                    GROUP BY estudiante.carne
-                    LIMIT 1;
+                    /* GROUP BY estudiante.carne */
+                    LIMIT 1)THEN
+                        SELECT sum(curso.creditos) as total_creditos INTO creditos_estudiante_var FROM estudiante
+                        INNER JOIN asignacion as a
+                        ON estudiante.carne = a.id_estudiante
+                        INNER JOIN acta_nota as an
+                        ON an.id_asignacion = a.id
+                        INNER JOIN aprobacion_curso as ac
+                        ON ac.acta_nota_codigo = an.id
+                        INNER JOIN seccion as sec
+                        ON a.id_seccion = sec.id
+                        INNER JOIN curso
+                        ON sec.id_curso = curso.id
+                        WHERE ac.aprobado = 1 AND estudiante.carne = id_estudiante_p       
+                        /* GROUP BY estudiante.carne */
+                        LIMIT 1;
+                    ELSE
+                        SET creditos_estudiante_var = 0;
+                    END IF;
                     -- Verificamos que el estudiante tenga los creditos suficientes
                     IF(creditos_estudiante_var >= creditos_curso_prerrequisito_var) THEN 
                         INSERT INTO registroacademico_f1.asignacion (id_estudiante, id_seccion, fecha) 
@@ -89,5 +107,18 @@ BEGIN
         SET MESSAGE_TEXT = 'La sección no existe aún';
     END IF;
 END$$
-
 DELIMITER ;
+
+
+CALL asignacionCurso(3, 12); -- SECCION, ESTUDIANTE
+
+-- DROP PROCEDURE asignacionCurso;
+SELECT * FROM ESTUDiante_Creditos;
+SELECT * FROM ESTUDIANTE;
+SELECT * FROM INSCRIPCION;
+SELECT * FROM ASIGNACION;
+
+SELECT * FROM CURSO;
+SELECT * FROM SECCION;
+SELECT * FROM CURSO_PENSUM;
+select * from creditos_prerrequisito;

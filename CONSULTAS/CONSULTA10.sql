@@ -19,8 +19,6 @@ INNER JOIN curso AS c
 ON s.id_curso = c.id
 ;
 
-/*WHERE e.carne != ""*/
-
 SELECT * FROM estudiante_curso AS ec
 INNER JOIN estudiantes_curso AS esc
 ON ec.seccion_id = esc.seccion_id

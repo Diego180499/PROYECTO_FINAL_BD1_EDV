@@ -1,5 +1,4 @@
 DELIMITER $$
-
 CREATE PROCEDURE insertarCatedratico(
     IN nombre_p VARCHAR(50), 
     IN apellido_p VARCHAR(50),
@@ -22,7 +21,7 @@ BEGIN
             SET MESSAGE_TEXT = 'El correo no es válido';
         ELSE
             -- Validar telefono
-            IF NOT (telefono_p REGEXP '^[0-9]{2,5}$') THEN
+            IF NOT (telefono_p REGEXP '^[0-9]{8,8}$') THEN
                 SIGNAL SQLSTATE '45000'
                 SET MESSAGE_TEXT = 'El teléfono no es válido';
             ELSE
@@ -35,7 +34,7 @@ BEGIN
                     SIGNAL SQLSTATE '45000'
                     SET MESSAGE_TEXT = 'El catedratico ya ha sido ingresado';
                     ELSE
-                    --Insertar la nueva carrera
+                    -- Insertar la nueva carrera
                     INSERT INTO registroacademico_f1.catedratico (dpi, nombre, apellido, fecha_nacimiento, sueldo_mensual, telefono, direccion, correo) 
                     VALUES (dpi_p, nombre_p, apellido_p, fecha_nacimiento_p, sueldo_mensual_p, telefono_p, direccion_p, correo_p);
                     END IF;
@@ -44,17 +43,18 @@ BEGIN
         END IF;
     END IF;
 END$$
-
 DELIMITER ;
 
-
+-- DROP PROCEDURE insertarCatedratico
 CALL insertarCatedratico(
-    'Juan',               -- nombre_p
-    'Perez',              -- apellido_p
-    '1980-05-20',         -- fecha_nacimiento_p
-    'juan.perez@example.com', -- correo_p
-    '12345',              -- telefono_p
-    '123 Calle Falsa',    -- direccion_p
-    '1234567890123',      -- dpi_p
+    'Romeo',               -- nombre_p
+    'Juarez',              -- apellido_p
+    '1981-05-20',         -- fecha_nacimiento_p
+    'romeo.perez@example.com', -- correo_p
+    '12341257',              -- telefono_p
+    '13 Calle A',    -- direccion_p
+    '1234567890113',      -- dpi_p
     4500.00               -- sueldo_mensual_p
 );
+
+-- TELEFONO: 8 DIG, DPI: 13 UNICO

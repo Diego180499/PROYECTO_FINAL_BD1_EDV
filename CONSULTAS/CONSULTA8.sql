@@ -11,5 +11,5 @@ FROM estudiante
 	INNER JOIN promedio_estudiante
 	ON estudiante.carne = promedio_estudiante.carne -- SELECT * FROM promedio_estudiante; -- PROMEDIO cursos aprob x ESTUDIANTE
 -- Conocer ESTUDIANTES de X CARRERA con sus CREDITOS aprobados, y su PROMEDIO sobre CURSOS_APROBADOS)
-WHERE carrera.id = 1 -- puede ser cualquier otra carrera
+WHERE carrera.id = 2 -- puede ser cualquier otra carrera
 AND estudiante_creditos.total_creditos >= pensum.creditos_cierre;

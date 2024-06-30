@@ -1,5 +1,4 @@
 DELIMITER $$
-
 CREATE PROCEDURE insertarEstudiante(
     IN carnet_p INT,
     IN nombre_p VARCHAR(50), 
@@ -55,7 +54,7 @@ DELIMITER ;
 
 
 CALL insertarEstudiante(
-    585, 
+    16, 
     'Juan', 
     'Perez', 
     '2000-01-01', 
@@ -64,5 +63,7 @@ CALL insertarEstudiante(
     'Avenida Principal 123', 
     '1234567890123', 
     1, 
-    2
+    5 -- ID jornadas de 1 -4
 );
+
+-- SELECT * FROM ESTUDIANTE

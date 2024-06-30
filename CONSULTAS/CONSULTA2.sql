@@ -41,5 +41,5 @@ ON pensum.id_carrera = carrera.id
 select * from consulta2
 where hora_inicio = "12:00:00"
 AND hora_fin = "13:00:00"
-AND ciclo_id = "1S"
+AND ciclo_id = "2S"
 ;

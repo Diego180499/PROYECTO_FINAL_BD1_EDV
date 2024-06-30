@@ -1,5 +1,4 @@
 DELIMITER $$
-
 CREATE PROCEDURE crearSeccionCurso(
     IN id_curso_p INT,
     IN id_salon_p INT,
@@ -42,7 +41,7 @@ BEGIN
         SET MESSAGE_TEXT = 'El curso no existe aún';
     END IF;
 END$$
-
 DELIMITER ;
 
-CALL crearSeccionCurso(1, 1, 3, '1S', 'A');
+
+CALL crearSeccionCurso(1, 1, 3, '1S', 'B'); -- ID CURSO (1), ID SALON(1), ID CATED(1), ID CICLO('1S'), SECCION ('B')

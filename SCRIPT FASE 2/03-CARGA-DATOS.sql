@@ -315,7 +315,7 @@ INSERT INTO registroacademico_f1.periodo_seccion (id, id_seccion, id_periodo) VA
 
 -- 11. PENSUMS
 INSERT INTO registroacademico_f1.pensum (id, id_carrera, id_jornada, id_semestre_inicio, id_semestre_fin, nombre, anio_inicio, anio_fin, creditos_cierre, cantidad_semestres) VALUES 
-(1, 1, 4, '1S', '10S', 'ING-SIS-2024', 2024, NULL, 300, 10);
+(1, 1, 4, '1S', '10S', 'ING-SIS-2024', 2024, NULL, 10, 10); -- creditos de sistemas
 
 INSERT INTO registroacademico_f1.pensum (id, id_carrera, id_jornada, id_semestre_inicio, id_semestre_fin, nombre, anio_inicio, anio_fin, creditos_cierre, cantidad_semestres) VALUES 
 (2, 2, 2, '1S', '10S', 'ING-CIV-2024', 2024, NULL, 320, 10);

@@ -1,5 +1,8 @@
-DELIMITER $$
+ALTER TABLE registroacademico_f1.desasignacion
+MODIFY COLUMN id INT NOT NULL AUTO_INCREMENT;
 
+
+DELIMITER $$
 CREATE PROCEDURE desasignacionCurso(
     IN id_seccion_p INT,
     IN id_estudiante_p INT,
@@ -19,7 +22,7 @@ BEGIN
                 SELECT id INTO id_asignacion_var FROM registroacademico_f1.asignacion 
                 WHERE id_estudiante = id_estudiante_p AND id_seccion = id_seccion_p LIMIT 1;
                 -- Insertamos la desasignación con los datos obtenidos
-                INSERT INTO registroacademico_f1.desasignacion (asignacion_id, fecha, motivo) 
+                INSERT INTO registroacademico_f1.desasignacion (id_asignacion, fecha, motivo) 
                 VALUES (id_asignacion_var, CURRENT_DATE(), motivo_p);
 
             ELSE
@@ -35,7 +38,9 @@ BEGIN
         SET MESSAGE_TEXT = 'La sección no existe aún';
     END IF;
 END$$
-
 DELIMITER ;
 
-CALL desasignacionCurso(1, 123, 'Cambio de horario');
+CALL desasignacionCurso(1, 1, 'Cambio de genero xD'); -- SECCION, ESTUDIANTE, motivo
+DROP PROCEDURE desasignacionCurso;
+
+SELECT * FROM DESASIGNACION;

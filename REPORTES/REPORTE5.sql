@@ -24,7 +24,7 @@ BEGIN
         INTO ciclo_existente
         FROM Seccion
         WHERE id_ciclo = p_id_ciclo
-        -- AND anio = p_anio
+        AND anio = p_anio
         ;
 
         IF ciclo_existente = 0 THEN
@@ -36,10 +36,10 @@ BEGIN
                 c.nombre AS Curso,
                 s.seccion AS Seccion,
                 d.dia AS Dia,
-                /*
+                
                 CONCAT(
                     MIN(p.hora_inicio), ' - ', MAX(p.hora_fin)
-                ) AS Periodo,*/
+                ) AS Periodo,
                 CONCAT(ed.nombre, ', ', sa.nombre) AS Lugar
             FROM 
                 Estudiante e
@@ -55,8 +55,8 @@ BEGIN
                 Dia d ON ds.id_dia = d.id
             INNER JOIN 
                 Periodo_Seccion ps ON s.id = ps.id_seccion
-            -- INNER JOIN 
-                -- Periodo p ON ps.id_periodo = p.id
+            INNER JOIN 
+			Periodo p ON ps.id_periodo = p.id
             INNER JOIN 
                 Salon sa ON s.id_salon = sa.id
             INNER JOIN 

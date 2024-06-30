@@ -1,5 +1,4 @@
 DELIMITER $$
-
 CREATE PROCEDURE agregarHorario(
     IN id_seccion_p INT,
     IN id_periodo_p INT,
@@ -13,7 +12,7 @@ BEGIN
             -- Verificamos que el día esté registrado
             IF EXISTS (SELECT * FROM registroacademico_f1.dia WHERE id = id_dia_p LIMIT 1) THEN
                 -- Insertamos la informacion en día_seccion, si no ha sido insertada aún
-                IF NOT EXISTS (SELECT * FROM registroacademico_f1.dia_seccion WHERE id_seccion = id_seccion_p AND id_dia = id_dia_p LIMIT 1) THEN
+			IF NOT EXISTS (SELECT * FROM registroacademico_f1.dia_seccion WHERE id_seccion = id_seccion_p AND id_dia = id_dia_p LIMIT 1) THEN
                     INSERT INTO registroacademico_f1.dia_seccion (id_seccion, id_dia) 
                     VALUES (id_seccion_p, id_dia_p);
                 END IF;
@@ -35,8 +34,7 @@ BEGIN
         SET MESSAGE_TEXT = 'La sección no existe aún';
     END IF;
 END$$
-
 DELIMITER ;
 
 -- Llamada al procedimiento con parámetros de prueba
-CALL agregarHorario(1, 1, 5);
+CALL agregarHorario(11, 8, 1); -- SECCION (), PERIODO, DIA (2)
